@@ -12,12 +12,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 
-from core import models
-from core import serializers
-
-
-def index(request):
-    return redirect('/docs/')
+from . import models
+from . import serializers
 
 
 @api_view(['post'])

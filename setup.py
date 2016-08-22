@@ -12,6 +12,7 @@ setup(
     version='0.1',
     packages=find_packages(),
     include_package_data=True,
+    install_requires = ['djangorestframework>=3.4','django-rest-swagger>=0.3.10'],
     license='BSD License',  # example license
     description='A simple Django app to generate speach from text',
     long_description=README,

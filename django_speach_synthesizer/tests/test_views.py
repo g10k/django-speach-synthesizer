@@ -10,7 +10,7 @@ from django.conf import settings
 
 
 class TestGenerateView(APITestCase):
-    url = reverse('Core:generate')
+    url = reverse('speach_synthesizer:generate')
 
     def tearDown(self):
         shutil.rmtree(settings.OUTPUT_DIR)
@@ -25,8 +25,8 @@ class TestGenerateView(APITestCase):
 
 
 class TestGetFileView(APITestCase):
-    get_url = reverse('Core:get_file')
-    gen_url = reverse('Core:generate')
+    get_url = reverse('speach_synthesizer:get_file')
+    gen_url = reverse('speach_synthesizer:generate')
 
     def test_get_file(self):
         gen_response = self.client.post(self.gen_url, {'text': 'Awesome Text!'})
