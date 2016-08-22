@@ -4,19 +4,22 @@ import tempfile
 import os
 import uuid
 
+from django.contrib.auth.decorators import login_required
 from django.http import Http404, JsonResponse
 from django.http import HttpResponse
 from django.core.files import File
 from django.shortcuts import redirect
+from django.contrib.auth.models import User
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 
 from . import models
 from . import serializers
 
-
 @api_view(['post'])
+@permission_classes((IsAuthenticated,))
 def generate(request):
     """
     ---
@@ -44,7 +47,6 @@ def generate(request):
             {'error': 'File generation error', 'output': output},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
-
     with open(tmp_path, 'rb') as tmp_file:
         models.SoundFile.objects.create(
             uuid=file_uuid,
@@ -52,6 +54,7 @@ def generate(request):
             command=command,
             file=File(tmp_file),
             type='wav',
+            user=request.user if not request.user.is_anonymous() else None
         )
 
     os.unlink(tmp_path)
@@ -59,6 +62,7 @@ def generate(request):
 
 
 @api_view()
+@permission_classes((IsAuthenticated,))
 def get_file(request):
     """
     ---
