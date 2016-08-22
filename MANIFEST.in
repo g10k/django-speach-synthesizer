@@ -1,0 +1,4 @@
+include LICENSE
+include README.rst
+recursive-include django-speach-synthesizer/static *
+recursive-include django-speach-synthesizer/templates *
