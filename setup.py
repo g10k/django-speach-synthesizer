@@ -8,15 +8,15 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='django-speach-synthesizer',
+    name='django-tts',
     version='0.1',
     packages=find_packages(),
     include_package_data=True,
-    install_requires = ['djangorestframework>=3.4','django-rest-swagger>=0.3.10'],
+    install_requires = ['djangorestframework>=3.4',],
     license='BSD License',  # example license
     description='A simple Django app to generate speach from text',
     long_description=README,
-    url='https://www.example.com/',
+    url='https://github.com/g10k/django-speach-synthesizer',
     author='Sergey Vlasov',
     author_email='g10k.info@gmail.com',
     classifiers=[
