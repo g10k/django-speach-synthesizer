@@ -47,6 +47,7 @@ def generate(request):
             command=command,
             file=File(tmp_file),
             type='wav',
+            user=request.user if not request.user.is_anonymous() else None
         )
 
     os.unlink(tmp_path)
